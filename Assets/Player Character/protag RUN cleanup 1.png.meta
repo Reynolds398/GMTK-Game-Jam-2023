@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 90d4d117534f50e4e99f11c7f35cbc0b
+guid: 537bc1bb21aee124395f95c9f90c7f02
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,10 +123,10 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: protag RUN cleanup_0
+      name: protag RUN cleanup 1_0
       rect:
         serializedVersion: 2
-        x: 125
+        x: 134
         y: 0
         width: 425
         height: 720
@@ -137,17 +137,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 33301be9b56d47948b071eb39f3e1288
-      internalID: 1867964397
+      spriteID: d81770de16752bc4fa7292d23319fe91
+      internalID: 758251368
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: protag RUN cleanup_1
+      name: protag RUN cleanup 1_1
       rect:
         serializedVersion: 2
-        x: 518
+        x: 515
         y: 0
         width: 425
         height: 720
@@ -158,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8aac2d1f8bbf1a478c44c035beb85d3
-      internalID: 189066757
+      spriteID: 5ba869a0d2487164c8252b34566e1b0f
+      internalID: -1148677243
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: protag RUN cleanup_2
+      name: protag RUN cleanup 1_2
       rect:
         serializedVersion: 2
         x: 898
@@ -179,17 +179,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1b48e5da69b87e04ca5faed701024bcf
-      internalID: 1287974519
+      spriteID: 49b7b91c9f44a6c45b0793a4e62ad1c0
+      internalID: -515971566
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: protag RUN cleanup_3
+      name: protag RUN cleanup 1_3
       rect:
         serializedVersion: 2
-        x: 1275
+        x: 1281
         y: 0
         width: 425
         height: 720
@@ -200,17 +200,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a32bc0d0fc397a4c93886ee64329fde
-      internalID: -1312617205
+      spriteID: 629393293c397704691a1be6f8c87d10
+      internalID: 2102616028
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: protag RUN cleanup_4
+      name: protag RUN cleanup 1_4
       rect:
         serializedVersion: 2
-        x: 1662
+        x: 1671
         y: 0
         width: 425
         height: 720
@@ -221,17 +221,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb0c4d1809df7e44095e4ff5c3214a47
-      internalID: 784325847
+      spriteID: 3aa4fd1188203e44aa157dcd32e26cd4
+      internalID: 938935478
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: protag RUN cleanup_5
+      name: protag RUN cleanup 1_5
       rect:
         serializedVersion: 2
-        x: 2035
+        x: 2051
         y: 0
         width: 425
         height: 720
@@ -242,17 +242,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 71ffc867a7773f244bdd976d7363c563
-      internalID: 1246901282
+      spriteID: b20defc5f23f0454490baaca15b28655
+      internalID: -1964167851
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: protag RUN cleanup_6
+      name: protag RUN cleanup 1_6
       rect:
         serializedVersion: 2
-        x: 2419
+        x: 2444
         y: 0
         width: 425
         height: 720
@@ -263,17 +263,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d18590446ed8d644985ed55c4be711a
-      internalID: 146776843
+      spriteID: 0d9061c01f67042458a552926a703110
+      internalID: 565955438
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: protag RUN cleanup_7
+      name: protag RUN cleanup 1_7
       rect:
         serializedVersion: 2
-        x: 2796
+        x: 2828
         y: 0
         width: 425
         height: 720
@@ -284,8 +284,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09ba50fdb6ff4824a87860efeb166141
-      internalID: -1501728945
+      spriteID: 351349684005b9c4cbcf2631a1b4c977
+      internalID: -1801209931
       vertices: []
       indices: 
       edges: []
@@ -301,14 +301,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      protag RUN cleanup_0: 1867964397
-      protag RUN cleanup_1: 189066757
-      protag RUN cleanup_2: 1287974519
-      protag RUN cleanup_3: -1312617205
-      protag RUN cleanup_4: 784325847
-      protag RUN cleanup_5: 1246901282
-      protag RUN cleanup_6: 146776843
-      protag RUN cleanup_7: -1501728945
+      protag RUN cleanup 1_0: 758251368
+      protag RUN cleanup 1_1: -1148677243
+      protag RUN cleanup 1_2: -515971566
+      protag RUN cleanup 1_3: 2102616028
+      protag RUN cleanup 1_4: 938935478
+      protag RUN cleanup 1_5: -1964167851
+      protag RUN cleanup 1_6: 565955438
+      protag RUN cleanup 1_7: -1801209931
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
