@@ -10,7 +10,10 @@ public class Pieces : MonoBehaviour
     public Vector3Int position { get; private set; }
 
     public float fallInterval = 1.0f;
-    private float timer = 0f;
+    public float lockDelay = 0.5f;
+
+    private float timer;
+    private float lockTime;
 
     public void Initialize(SpawnManager board, Vector3Int position, TetrominoData data)
     {
@@ -29,22 +32,45 @@ public class Pieces : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        timer = Time.time + fallInterval;
+        lockTime = 0f;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
+        lockTime += Time.deltaTime;
 
         board.Clear(this);
 
         //Move left and right here
 
-        if (timer > fallInterval)
+        if (Time.time >= timer)
         {
-            Move(Vector2Int.down);
-            timer -= fallInterval;
+            Step();
         }
 
         board.Set(this);
+    }
+
+    private void Step()
+    {
+        timer = Time.time + fallInterval;
+
+        Move(Vector2Int.down);
+
+        if (lockTime >= lockDelay)
+        {
+            Lock();
+        }
+    }
+
+    private void Lock()
+    {
+        board.Set(this);
+        board.SpawnPiece();
     }
 
     private bool Move(Vector2Int translation)
@@ -58,6 +84,7 @@ public class Pieces : MonoBehaviour
         if (valid)
         {
             position = newPosition;
+            this.lockTime = 0f;
         }
 
         return valid;
