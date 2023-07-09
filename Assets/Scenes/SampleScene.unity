@@ -893,6 +893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1528c479638714fc09ec093ba2da4ea1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 218377866}
   fallInterval: 1
   lockDelay: 0.5
 --- !u!19719996 &443414959
@@ -1403,7 +1404,6 @@ MonoBehaviour:
     tile: {fileID: 11400000, guid: 05e09082998d947cc9a60f20cd20d725, type: 2}
   spawnPosition: {x: -1, y: 8, z: 0}
   boardSize: {x: 10, y: 20}
-  falling: 0
 --- !u!1 &1075896123
 GameObject:
   m_ObjectHideFlags: 0

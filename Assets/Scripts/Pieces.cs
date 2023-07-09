@@ -8,6 +8,7 @@ public class Pieces : MonoBehaviour
     public TetrominoData data { get; private set; }
     public Vector3Int[] cells { get; private set; }
     public Vector3Int position { get; private set; }
+    public GameObject player;
 
     public float fallInterval = 1.0f;
     public float lockDelay = 0.5f;
@@ -61,7 +62,7 @@ public class Pieces : MonoBehaviour
 
         Move(Vector2Int.down);
 
-        if (lockTime >= lockDelay)
+        if (lockTime >= lockDelay && !player.GetComponent<PlayerControl>().death)
         {
             Lock();
         }

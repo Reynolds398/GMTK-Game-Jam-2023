@@ -11,8 +11,6 @@ public class SpawnManager : MonoBehaviour
     public Vector3Int spawnPosition;
     public Vector2Int boardSize = new Vector2Int(10, 20);
 
-    public bool falling = false;
-
     public RectInt Bounds
     {
         get
@@ -36,17 +34,6 @@ public class SpawnManager : MonoBehaviour
     private void Start()
     {
         SpawnPiece();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (!falling)
-        {
-
-            falling = true;
-        }
-        
     }
 
     public void SpawnPiece()
