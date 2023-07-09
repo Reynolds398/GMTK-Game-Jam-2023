@@ -11,16 +11,22 @@ public class GameController : MonoBehaviour
 
     private bool followOn = false;
     private float delay = 2.0f;
+    public bool vertical = false;
+    private float playerPosX;
+    private float timer = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
         coroutine = FollowPlayer(delay);
+        playerPosX = player.transform.position.x;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("vertical is " + vertical);
+
         if (player.GetComponent<PlayerControl>().death)
         {
             StopAllCoroutines();
@@ -40,6 +46,60 @@ public class GameController : MonoBehaviour
                 piece.TurnOnSoftDrop();
             }
         }
+
+        if (piece.difficulty >= 3) //Normal+
+        {
+            float curPlayerPosX = player.transform.position.x;
+
+            //If player doesn't really move, rotate block to be vertical
+            if (playerPosX - 1 <= curPlayerPosX && curPlayerPosX <= playerPosX + 1)
+            {
+                timer += Time.deltaTime;
+
+                if (timer >= 2.0f && !vertical)
+                {
+                    timer -= 2.0f;
+
+                    //Choose a random direction to rotate to
+                    int random = Random.Range(0, 2);
+
+                    if (random == 0)
+                    {
+                        piece.RotateLeft();
+                    }
+                    else
+                    {
+                        piece.RotateRight();
+                    }
+
+                    vertical = true;
+                }
+            }
+            else
+            {
+                timer = 0;
+
+                if (vertical)
+                {
+                    //Choose a random direction to rotate to
+                    int random = Random.Range(0, 2);
+
+                    if (random == 0)
+                    {
+                        piece.RotateLeft();
+                    }
+                    else
+                    {
+                        piece.RotateRight();
+                    }
+
+                    vertical = false;
+                }
+
+                playerPosX = curPlayerPosX;
+            }
+        }
+
     }
 
     private IEnumerator FollowPlayer(float waitTime)
