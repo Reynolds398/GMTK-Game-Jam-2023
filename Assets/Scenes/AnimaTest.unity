@@ -239,7 +239,10 @@ MonoBehaviour:
   jumpForce: 15
   fallAcceleration: 5
   defaultGravity: 4
+  death: 0
+  animator: {fileID: 0}
   groundCheckerObj: {fileID: 2099626804}
+  gameOver: {fileID: 0}
 --- !u!50 &218377868
 Rigidbody2D:
   serializedVersion: 4
@@ -699,8 +702,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1528c479638714fc09ec093ba2da4ea1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  ai: {fileID: 0}
   fallInterval: 1
   lockDelay: 0.5
+  difficulty: 1
 --- !u!19719996 &443414959
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -1030,6 +1036,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cc313e4b49b04b068aec3875b02d9bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  piece: {fileID: 0}
+  player: {fileID: 0}
+  vertical: 0
 --- !u!1 &945581323
 GameObject:
   m_ObjectHideFlags: 0
@@ -1209,7 +1218,6 @@ MonoBehaviour:
     tile: {fileID: 11400000, guid: 05e09082998d947cc9a60f20cd20d725, type: 2}
   spawnPosition: {x: -1, y: 8, z: 0}
   boardSize: {x: 10, y: 20}
-  falling: 0
 --- !u!1 &1360613663
 GameObject:
   m_ObjectHideFlags: 0
