@@ -35,6 +35,9 @@ public class PlayerControl : MonoBehaviour
     public GameObject groundCheckerObj;
     private GroundChecker groundChecker;
 
+    //Game Over
+    public GameObject gameOver;
+
     //Game Components
     private Rigidbody2D rBody;
     
@@ -194,6 +197,10 @@ public class PlayerControl : MonoBehaviour
             animator.SetFloat("Speed", Mathf.Abs(newVelocity.x));
 
             rBody.velocity = newVelocity;
+        }
+        else
+        {
+            gameOver.SetActive(true);
         }
     }
 
