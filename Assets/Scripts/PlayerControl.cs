@@ -203,6 +203,4 @@ public class PlayerControl : MonoBehaviour
             gameOver.SetActive(true); //Tick the canvas
         }
     }
-
-
 }

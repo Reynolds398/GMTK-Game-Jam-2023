@@ -21,6 +21,13 @@ public class Pieces : MonoBehaviour
     private float timer;
     private float lockTime;
 
+    //AI Variables
+    private int leftCount = 0;
+    private int rightCount = 0;
+    private float moveTimer;
+    private bool softDropOn = false;
+    private bool softDropping = false;
+
     public void Initialize(SpawnManager board, Vector3Int position, TetrominoData data)
     {
         this.board = board;
@@ -41,6 +48,7 @@ public class Pieces : MonoBehaviour
     private void Start()
     {
         timer = Time.time + fallInterval;
+        moveTimer = Time.time + (fallInterval/5);
         lockTime = 0f;
     }
 
@@ -60,7 +68,47 @@ public class Pieces : MonoBehaviour
 
         board.Clear(this);
 
-        //Move left and right here
+        //Move left
+        if (leftCount > 0)
+        {
+            if (Time.time >= moveTimer)
+            {
+                Move(Vector2Int.left);
+                leftCount--;
+                moveTimer = Time.time + (fallInterval / 5);
+            }
+        }
+
+        //Move Right
+        if (rightCount > 0)
+        {
+            if (Time.time >= moveTimer)
+            {
+                Move(Vector2Int.right);
+                rightCount--;
+                moveTimer = Time.time + (fallInterval / 5);
+            }
+        }
+
+        //Soft drop when position is halfway down the map
+        if (softDropOn)
+        {
+            //If halfway down, soft drop
+            if (position.y <= 0)
+            {
+                softDropping = true;
+
+                //Lock in place before drop
+                leftCount = 0;
+                rightCount = 0;
+
+                if (Time.time >= moveTimer)
+                {
+                    Move(Vector2Int.down);
+                    moveTimer = Time.time + (fallInterval / 5);
+                }
+            }
+        }
 
         if (Time.time >= timer)
         {
@@ -88,6 +136,7 @@ public class Pieces : MonoBehaviour
         board.Set(this);
         board.SpawnPiece();
         board.ClearLine();
+        softDropping = false;
     }
 
     private bool Move(Vector2Int translation)
@@ -133,13 +182,24 @@ public class Pieces : MonoBehaviour
     // -------------------Public Function for AI-----------------------
     // ****************************************************************
 
-    public void MoveLeft()
+    public void MoveLeft(int count)
     {
-        Move(Vector2Int.left);
+        if (!softDropping)
+        {
+            leftCount = count;
+        }
     }
 
-    public void MoveRight()
+    public void MoveRight(int count)
     {
-        Move(Vector2Int.right);
+        if (!softDropping)
+        {
+            rightCount = count;
+        }
+    }
+
+    public void TurnOnSoftDrop()
+    {
+        softDropOn = true;
     }
 }

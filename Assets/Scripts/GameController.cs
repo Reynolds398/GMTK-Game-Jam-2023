@@ -10,12 +10,12 @@ public class GameController : MonoBehaviour
     private IEnumerator coroutine;
 
     private bool followOn = false;
-    //private float delay = 3.0f;
+    private float delay = 2.0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        coroutine = FollowPlayer(delay);
     }
 
     // Update is called once per frame
@@ -32,13 +32,13 @@ public class GameController : MonoBehaviour
             //Follow player with 3 second delay
             if (!followOn)
             {
-                coroutine = FollowPlayer(3.0f);
                 StartCoroutine(coroutine);
                 Debug.Log("Coroutine Start!");
                 followOn = true;
-            }
 
-            //Soft drop at halfway point
+                //Soft drop at halfway point
+                piece.TurnOnSoftDrop();
+            }
         }
     }
 
@@ -47,6 +47,7 @@ public class GameController : MonoBehaviour
 
         while (true)
         {
+
             yield return new WaitForSeconds(waitTime);
 
             float diff = player.transform.position.x - piece.position.x;
@@ -59,18 +60,12 @@ public class GameController : MonoBehaviour
                 diffInt *= -1; //Make it positive
 
                 //Move left equal to the difference to player
-                for (int i = 0; i < diffInt; i++)
-                {
-                    piece.MoveLeft();
-                }
+                piece.MoveLeft(diffInt);
             }
             else //If positive
             {
                 //Move right equal to the difference to player
-                for (int i = 0; i < diffInt; i++)
-                {
-                    piece.MoveRight();
-                }
+                piece.MoveRight(diffInt);
             }
         }
         
