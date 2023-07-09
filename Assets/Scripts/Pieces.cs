@@ -13,6 +13,11 @@ public class Pieces : MonoBehaviour
     public float fallInterval = 1.0f;
     public float lockDelay = 0.5f;
 
+    //Difficulty variables
+    private int counter = 0;
+    private int difficultyThreshold = 2;
+    public int difficulty = 1;
+
     private float timer;
     private float lockTime;
 
@@ -42,6 +47,15 @@ public class Pieces : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Increase difficulty
+        if (counter >= difficultyThreshold && difficulty <= 5)
+        {
+            difficultyThreshold += difficulty * 2;
+            counter = 0;
+            RaiseDifficulty();
+            
+        }
+
         lockTime += Time.deltaTime;
 
         board.Clear(this);
@@ -65,6 +79,7 @@ public class Pieces : MonoBehaviour
         if (lockTime >= lockDelay && !player.GetComponent<PlayerControl>().death)
         {
             Lock();
+            counter++;
         }
     }
 
@@ -90,5 +105,41 @@ public class Pieces : MonoBehaviour
         }
 
         return valid;
+    }
+
+    private void RaiseDifficulty()
+    {
+        if (difficulty == 1) //Super Easy -> Easy
+        {
+            fallInterval = 0.8f;
+        }
+        else if (difficulty == 2) //Easy -> Normal
+        {
+            fallInterval = 0.6f;
+        }
+        else if (difficulty == 3) //Normal -> Hard
+        {
+            fallInterval = 0.2f;
+        }
+        else if (difficulty == 4) //Hard -> Very Hard
+        {
+            fallInterval = 0.05f;
+        }
+
+        difficulty++;
+    }
+
+    // ****************************************************************
+    // -------------------Public Function for AI-----------------------
+    // ****************************************************************
+
+    public void MoveLeft()
+    {
+        Move(Vector2Int.left);
+    }
+
+    public void MoveRight()
+    {
+        Move(Vector2Int.right);
     }
 }
