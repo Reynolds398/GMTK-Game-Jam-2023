@@ -52,7 +52,20 @@ public class SpawnManager : MonoBehaviour
             spawnPosition = new Vector3Int(randomSpawn, 8);
         }
         activePiece.Initialize(this, spawnPosition, data);
-        Set(activePiece);
+
+        if (IsValidPosition(activePiece, spawnPosition))
+        {
+            Set(activePiece);
+        }
+        else
+        {
+            GameOver();
+        }
+    }
+
+    private void GameOver()
+    {
+        tilemap.ClearAllTiles();
     }
 
     public void Set(Pieces piece)
