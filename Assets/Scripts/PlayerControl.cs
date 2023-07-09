@@ -200,6 +200,7 @@ public class PlayerControl : MonoBehaviour
         }
         else
         {
+            animator.SetBool("IsDead", true);
             gameOver.SetActive(true); //Tick the canvas
         }
     }
