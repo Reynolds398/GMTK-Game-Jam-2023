@@ -5,7 +5,6 @@ using UnityEngine.Events;
 
 public class PlayerControl : MonoBehaviour
 {
-    public Animator animator;
     [Header("Custom Event")]
     public UnityEvent customEvent;
 
@@ -30,6 +29,11 @@ public class PlayerControl : MonoBehaviour
     //Death bool
     public bool death = false;
 
+    //Animator bool
+    public Animator animator;
+    private bool facingRight = false;
+    private SpriteRenderer spriteRenderer;
+
     //Game object attached to character with trigger for checking ground
     public GameObject groundCheckerObj;
     private GroundChecker groundChecker;
@@ -44,6 +48,7 @@ public class PlayerControl : MonoBehaviour
         rBody.sleepMode = RigidbodySleepMode2D.NeverSleep;
         rBody.gravityScale = defaultGravity;
         groundChecker = groundCheckerObj.GetComponent<GroundChecker>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -52,6 +57,9 @@ public class PlayerControl : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
+        // Animator Jump
+        animator.SetBool("IsJumping", true);
+
         // ****************************************************************
         // --------------------------Jump Movement-------------------------
         // ****************************************************************
@@ -59,8 +67,6 @@ public class PlayerControl : MonoBehaviour
         //If player let go of space button mid jump
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            // Animator Jump
-            //animator.SetBool("IsJumping", true);
             if (!groundChecker.touchingGround)
             {
                 //Fall faster if space is let go and not touching the ground
@@ -71,9 +77,6 @@ public class PlayerControl : MonoBehaviour
         //If player press the space button
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // Animator Jump
-            animator.SetBool("IsJumping", true);
-
             if (groundChecker.ableToJump && !death)
             {
                 rBody.gravityScale = defaultGravity;
@@ -90,14 +93,9 @@ public class PlayerControl : MonoBehaviour
         {
             //If touching ground, set gravity to normal
             rBody.gravityScale = defaultGravity;
-        }
-    }
 
-    //Animation Landing
-    public void OnLanding()
-    {
-        animator.SetBool("IsJumping", false);
-        Debug.Log("IFHWWQNIOFIOQWHFNOUQWHNIOQHNIOUQHNFIOQWE");
+            animator.SetBool("IsJumping", false);
+        }
     }
 
     // Update for Physics
@@ -116,9 +114,13 @@ public class PlayerControl : MonoBehaviour
         {
             //Increase x velocity by the acceleration factor
             newVelocity.x += speed * accelerationFactor;
-            
-            //Animator go right
-            animator.SetFloat("Speed", Mathf.Abs(newVelocity.x));
+
+            //Flip if not facing right
+            if (!facingRight && !death)
+            {
+                spriteRenderer.flipX = true;
+                facingRight = true;
+            }
 
             //If updated speed exceed speed limit, set it to the max speed
             if (newVelocity.x > speed)
@@ -131,8 +133,12 @@ public class PlayerControl : MonoBehaviour
             //Decrease x velocity by the acceleration factor
             newVelocity.x -= speed * accelerationFactor;
 
-            //Animator go left
-            animator.SetFloat("Speed", Mathf.Abs(newVelocity.x));
+            //Flip if not facing left
+            if (facingRight && !death)
+            {
+                spriteRenderer.flipX = false;
+                facingRight = false;
+            }
 
             //If updated speed exceed speed limit, set it to the max speed
             if (newVelocity.x < -speed)
@@ -187,6 +193,9 @@ public class PlayerControl : MonoBehaviour
         //Update velocity with the updated velocity
         if (!death)
         {
+            //Animator go left
+            animator.SetFloat("Speed", Mathf.Abs(newVelocity.x));
+
             rBody.velocity = newVelocity;
         }
     }

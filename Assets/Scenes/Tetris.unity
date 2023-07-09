@@ -317,7 +317,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23238fc08050b4d8e8077cd36f4e105d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 218377872}
   customEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -329,6 +328,7 @@ MonoBehaviour:
   fallAcceleration: 5
   defaultGravity: 4
   death: 0
+  animator: {fileID: 218377872}
   groundCheckerObj: {fileID: 2099626804}
 --- !u!50 &218377868
 Rigidbody2D:
@@ -389,8 +389,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: -0.08539997, y: 0}
+  m_Size: {x: 1.0000004, y: 2}
   m_Direction: 0
 --- !u!212 &218377870
 SpriteRenderer:
@@ -593,7 +593,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 417735140}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.39, z: 0}
+  m_LocalPosition: {x: -0.076, y: -0.39, z: 0}
   m_LocalScale: {x: 0.8059603, y: 0.4821604, z: 0.5324126}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2574,7 +2574,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2099626804}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: -0.076, y: -1, z: 0}
   m_LocalScale: {x: 0.27609372, y: 0.450625, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
