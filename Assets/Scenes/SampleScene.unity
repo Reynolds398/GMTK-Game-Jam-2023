@@ -427,7 +427,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 6
+  m_SortingOrder: 7
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -768,7 +768,6 @@ GameObject:
   - component: {fileID: 443414955}
   - component: {fileID: 443414957}
   - component: {fileID: 443414956}
-  - component: {fileID: 443414958}
   - component: {fileID: 443414959}
   - component: {fileID: 443414961}
   - component: {fileID: 443414960}
@@ -834,7 +833,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 7
+  m_SortingOrder: 8
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -881,21 +880,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &443414958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 443414954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1528c479638714fc09ec093ba2da4ea1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 218377866}
-  fallInterval: 1
-  lockDelay: 0.5
 --- !u!19719996 &443414959
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -1340,6 +1324,7 @@ GameObject:
   - component: {fileID: 992852651}
   - component: {fileID: 992852650}
   - component: {fileID: 992852652}
+  - component: {fileID: 992852653}
   m_Layer: 0
   m_Name: Board
   m_TagString: Untagged
@@ -1404,6 +1389,21 @@ MonoBehaviour:
     tile: {fileID: 11400000, guid: 05e09082998d947cc9a60f20cd20d725, type: 2}
   spawnPosition: {x: -1, y: 8, z: 0}
   boardSize: {x: 10, y: 20}
+--- !u!114 &992852653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992852649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1528c479638714fc09ec093ba2da4ea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 218377866}
+  fallInterval: 1
+  lockDelay: 0.5
 --- !u!1 &1075896123
 GameObject:
   m_ObjectHideFlags: 0
@@ -1792,7 +1792,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 7
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -2108,6 +2108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1936927435}
   - component: {fileID: 1936927434}
+  - component: {fileID: 1936927436}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Untagged
@@ -2143,6 +2144,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1936927436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936927433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7572c7fa60034fa988e4afeb0fa3e11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tile: {fileID: 11400000, guid: 41907a5d1d44544228c60ecce5737adf, type: 2}
+  board: {fileID: 992852652}
+  trackingPiece: {fileID: 992852653}
 --- !u!1 &1968946030
 GameObject:
   m_ObjectHideFlags: 0
