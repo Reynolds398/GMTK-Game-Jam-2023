@@ -71,6 +71,7 @@ public class Pieces : MonoBehaviour
     {
         board.Set(this);
         board.SpawnPiece();
+        board.ClearLine();
     }
 
     private bool Move(Vector2Int translation)
