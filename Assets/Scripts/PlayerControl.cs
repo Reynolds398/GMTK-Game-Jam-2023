@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerControl : MonoBehaviour
 {
+    public Animator animator;
+    [Header("Custom Event")]
+    public UnityEvent customEvent;
+
     //Movement variables
     public float speed = 10.0f;
     [Range(0f, 1.0f)]
@@ -18,7 +23,7 @@ public class PlayerControl : MonoBehaviour
     public int jumpCount = 0;
     public float jumpForce = 0f;
     public float fallAcceleration = 0f;
-    public float defaultGravity = 10f;
+    public float defaultGravity = 10f; 
 
     private float verticalInput = 0f;
 
@@ -54,6 +59,8 @@ public class PlayerControl : MonoBehaviour
         //If player let go of space button mid jump
         if (Input.GetKeyUp(KeyCode.Space))
         {
+            // Animator Jump
+            //animator.SetBool("IsJumping", true);
             if (!groundChecker.touchingGround)
             {
                 //Fall faster if space is let go and not touching the ground
@@ -64,6 +71,9 @@ public class PlayerControl : MonoBehaviour
         //If player press the space button
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            // Animator Jump
+            animator.SetBool("IsJumping", true);
+
             if (groundChecker.ableToJump && !death)
             {
                 rBody.gravityScale = defaultGravity;
@@ -83,6 +93,13 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    //Animation Landing
+    public void OnLanding()
+    {
+        animator.SetBool("IsJumping", false);
+        Debug.Log("IFHWWQNIOFIOQWHFNOUQWHNIOQHNIOUQHNFIOQWE");
+    }
+
     // Update for Physics
     private void FixedUpdate()
     {
@@ -99,6 +116,9 @@ public class PlayerControl : MonoBehaviour
         {
             //Increase x velocity by the acceleration factor
             newVelocity.x += speed * accelerationFactor;
+            
+            //Animator go right
+            animator.SetFloat("Speed", Mathf.Abs(newVelocity.x));
 
             //If updated speed exceed speed limit, set it to the max speed
             if (newVelocity.x > speed)
@@ -111,6 +131,9 @@ public class PlayerControl : MonoBehaviour
             //Decrease x velocity by the acceleration factor
             newVelocity.x -= speed * accelerationFactor;
 
+            //Animator go left
+            animator.SetFloat("Speed", Mathf.Abs(newVelocity.x));
+
             //If updated speed exceed speed limit, set it to the max speed
             if (newVelocity.x < -speed)
             {
@@ -121,6 +144,9 @@ public class PlayerControl : MonoBehaviour
         {
             float decelerationSpeed = speed * decelerationFactor;
             //Debug.Log("current deceleration speed: " + decelerationSpeed);
+
+            //Animator Doesn't Move
+            animator.SetFloat("Speed", Mathf.Abs(newVelocity.x));
 
             //If speed is within this threshold, set speed to 0
             if (-decelerationSpeed <= newVelocity.x && newVelocity.x <= decelerationSpeed)
