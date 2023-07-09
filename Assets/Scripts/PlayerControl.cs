@@ -200,7 +200,7 @@ public class PlayerControl : MonoBehaviour
         }
         else
         {
-            gameOver.SetActive(true);
+            gameOver.SetActive(true); //Tick the canvas
         }
     }
 
