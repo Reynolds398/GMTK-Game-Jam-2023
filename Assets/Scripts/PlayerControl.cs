@@ -5,9 +5,6 @@ using UnityEngine.Events;
 
 public class PlayerControl : MonoBehaviour
 {
-    [Header("Custom Event")]
-    public UnityEvent customEvent;
-
     //Movement variables
     public float speed = 10.0f;
     [Range(0f, 1.0f)]
