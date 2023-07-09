@@ -11,6 +11,7 @@ public class Pieces : MonoBehaviour
     public int rotationIndex { get; private set; }
     public GameObject player;
     public GameController ai;
+    private AudioSource audioSource;
 
     public float fallInterval = 1.0f;
     public float lockDelay = 0.5f;
@@ -54,6 +55,7 @@ public class Pieces : MonoBehaviour
         timer = Time.time + fallInterval;
         moveTimer = Time.time + (fallInterval/5);
         lockTime = 0f;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -160,6 +162,7 @@ public class Pieces : MonoBehaviour
         board.ClearLine();
         softDropping = false;
         ai.vertical = false;
+        audioSource.PlayOneShot(audioSource.clip, 0.4f);
     }
 
     private bool Move(Vector2Int translation)
