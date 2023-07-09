@@ -12,7 +12,7 @@ public class PlayerControl : MonoBehaviour
     public float decelerationFactor = 1f;
 
     private float horizontalInput = 0f;
-    private Vector2 newVelocity = new(0f, 0f);
+    private Vector2 newVelocity = new Vector2(0f, 0f);
 
     //Jump variables
     public int jumpCount = 0;
@@ -21,6 +21,9 @@ public class PlayerControl : MonoBehaviour
     public float defaultGravity = 10f;
 
     private float verticalInput = 0f;
+
+    //Death bool
+    public bool death = false;
 
     //Game object attached to character with trigger for checking ground
     public GameObject groundCheckerObj;
@@ -61,7 +64,7 @@ public class PlayerControl : MonoBehaviour
         //If player press the space button
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (groundChecker.ableToJump)
+            if (groundChecker.ableToJump && !death)
             {
                 rBody.gravityScale = defaultGravity;
 
@@ -153,8 +156,13 @@ public class PlayerControl : MonoBehaviour
         // ------------------------Velocity Update-------------------------
         // ****************************************************************
 
+        Debug.Log("Death value is " + death);
+
         //Update velocity with the updated velocity
-        rBody.velocity = newVelocity;
+        if (!death)
+        {
+            rBody.velocity = newVelocity;
+        }
     }
 
 
