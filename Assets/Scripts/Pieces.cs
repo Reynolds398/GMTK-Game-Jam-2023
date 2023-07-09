@@ -10,7 +10,6 @@ public class Pieces : MonoBehaviour
     public Vector3Int position { get; private set; }
     public int rotationIndex { get; private set; }
     public GameObject player;
-    public GameController ai;
 
     public float fallInterval = 1.0f;
     public float lockDelay = 0.5f;
@@ -29,8 +28,6 @@ public class Pieces : MonoBehaviour
     private float moveTimer;
     private bool softDropOn = false;
     private bool softDropping = false;
-    private int rightRotateCount = 0;
-    private int leftRotateCount = 0;
 
     public void Initialize(SpawnManager board, Vector3Int position, TetrominoData data)
     {
@@ -72,21 +69,9 @@ public class Pieces : MonoBehaviour
 
         board.Clear(this);
 
-        //Rotate right
-        if (rightRotateCount > 0)
-        {
-            //1 is to the right
-            Rotate(1);
-            rightRotateCount--;
-        }
-
-        //Rotate left
-        if (leftRotateCount > 0)
-        {
-            //-1 is to the left
-            Rotate(-1);
-            leftRotateCount--;
-        }
+        //Rotate here
+        //1 is to the right
+        //-1 is to the left
 
         //Move left
         if (leftCount > 0)
@@ -121,8 +106,6 @@ public class Pieces : MonoBehaviour
                 //Lock in place before drop
                 leftCount = 0;
                 rightCount = 0;
-                rightRotateCount = 0;
-                leftRotateCount = 0;
 
                 if (Time.time >= moveTimer)
                 {
@@ -159,7 +142,6 @@ public class Pieces : MonoBehaviour
         board.SpawnPiece();
         board.ClearLine();
         softDropping = false;
-        ai.vertical = false;
     }
 
     private bool Move(Vector2Int translation)
@@ -173,7 +155,7 @@ public class Pieces : MonoBehaviour
         if (valid)
         {
             position = newPosition;
-            lockTime = 0f;
+            this.lockTime = 0f;
         }
 
         return valid;
@@ -182,8 +164,8 @@ public class Pieces : MonoBehaviour
     private void Rotate(int direction)
     {
         int originalRotation = rotationIndex;
-
         rotationIndex = Wrap(rotationIndex + direction, 0, 4);
+
         ApplyRotationMatrix(direction);
 
         if (!TestWallKicks(rotationIndex, direction))
@@ -195,8 +177,6 @@ public class Pieces : MonoBehaviour
 
     private void ApplyRotationMatrix(int direction)
     {
-        float[] matrix = Data.RotationMatrix;
-
         for (int i = 0; i < cells.Length; i++)
         {
             Vector3 cell = cells[i];
@@ -207,16 +187,15 @@ public class Pieces : MonoBehaviour
             {
                 case Tetromino.I:
                 case Tetromino.O:
-                    // "I" and "O" are rotated from an offset center point
                     cell.x -= 0.5f;
                     cell.y -= 0.5f;
-                    x = Mathf.CeilToInt((cell.x * matrix[0] * direction) + (cell.y * matrix[1] * direction));
-                    y = Mathf.CeilToInt((cell.x * matrix[2] * direction) + (cell.y * matrix[3] * direction));
+                    x = Mathf.CeilToInt((cell.x * Data.RotationMatrix[0] * direction) + (cell.y * Data.RotationMatrix[1] * direction));
+                    y = Mathf.CeilToInt((cell.x * Data.RotationMatrix[2] * direction) + (cell.y * Data.RotationMatrix[3] * direction));
                     break;
 
                 default:
-                    x = Mathf.RoundToInt((cell.x * matrix[0] * direction) + (cell.y * matrix[1] * direction));
-                    y = Mathf.RoundToInt((cell.x * matrix[2] * direction) + (cell.y * matrix[3] * direction));
+                    x = Mathf.CeilToInt((cell.x * Data.RotationMatrix[0] * direction) + (cell.y * Data.RotationMatrix[1] * direction));
+                    y = Mathf.CeilToInt((cell.x * Data.RotationMatrix[2] * direction) + (cell.y * Data.RotationMatrix[3] * direction));
                     break;
             }
 
@@ -310,21 +289,5 @@ public class Pieces : MonoBehaviour
     public void TurnOnSoftDrop()
     {
         softDropOn = true;
-    }
-
-    public void RotateRight()
-    {
-        if (!softDropping)
-        {
-            rightRotateCount++;
-        }
-    }
-
-    public void RotateLeft()
-    {
-        if (!softDropping)
-        {
-            leftRotateCount++;
-        }
     }
 }
